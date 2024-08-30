@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu Blog Profissional{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-dark text-white p-3">
+        <div class="container">
+            <h1>Meu Blog Profissional</h1>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'sobre' %}">Sobre</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mt-4">
+        <div class="container">
+            {% for Eu in lista %}
+                <h2 class="my-4">Sobre Mim</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        {% if Eu.foto %}
+                            <img src="{{ Eu.foto.url }}" alt="Foto de {{ Eu.nome }}" class="img-fluid rounded-circle mb-3">
+                        {% endif %}
+                        <h3>{{ Eu.nome }}</h3>
+                        <p><strong>Idade:</strong> {{ Eu.idade }} anos</p>
+                        <p><strong>Data de Nascimento:</strong> {{ Eu.data_nascimento }}</p>
+                        <p><strong>Cidade:</strong> {{ Eu.cidade }}, {{ Eu.estado }}</p>
+                        <p><strong>Estado Civil:</strong> {{ Eu.estado_civil }}</p>
+                        <p><strong>Email:</strong> <a href="mailto:{{ Eu.email }}">{{ Eu.email }}</a></p>
+                    </div>
+                    <div class="col-md-8">
+                        <h4>Formação Acadêmica</h4>
+                        <p><strong>{{ Eu.sobre.curso }}</strong> na {{ Eu.sobre.escola }} ({{ Eu.sobre.ano }})</p>
+        
+                        <h4>Interesses</h4>
+                        <p>{{ Eu.sobre.interece }}</p>
+        
+                        <h4>Habilidades</h4>
+                        <p>{{ Eu.sobre.habilidades }}</p>
+        
+                        <h4>Experiência Profissional</h4>
+                        <p>{{ Eu.sobre.experiencia_profissional }}</p>
+        
+                        <h4>Projetos</h4>
+                        <p>{{ Eu.sobre.projetos }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center p-3 mt-4">
+        <p>© 2024 Meu Blog Profissional. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
